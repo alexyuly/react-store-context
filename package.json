@@ -1,0 +1,29 @@
+{
+  "name": "react-yas",
+  "version": "1.0.0",
+  "description": "Yet Another Store for React",
+  "author": "Alex Yuly",
+  "license": "MIT",
+  "main": "./lib/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alexyuly/react-yas"
+  },
+  "scripts": {
+    "build": "tsc --module amd --outFile ./lib/index.js",
+    "dev": "webpack-dev-server --mode development"
+  },
+  "devDependencies": {
+    "@types/react": "16.7.21",
+    "@types/react-dom": "16.0.11",
+    "ts-loader": "5.3.3",
+    "typescript": "3.2.4",
+    "webpack": "4.28.4",
+    "webpack-cli": "3.2.1",
+    "webpack-dev-server": "3.1.14"
+  },
+  "dependencies": {
+    "react": "16.7.0",
+    "react-dom": "16.7.0"
+  }
+}

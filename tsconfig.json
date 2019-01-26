@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "declaration": true,
+    "inlineSourceMap": true,
+    "inlineSources": true,
+    "jsx": "react",
+    "lib": [
+      "dom",
+      "esnext"
+    ],
+    "moduleResolution": "node"
+  },
+  "files": [
+    "./src/index.tsx"
+  ]
+}
