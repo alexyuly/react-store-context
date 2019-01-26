@@ -10,12 +10,13 @@
     "url": "https://github.com/alexyuly/react-yas"
   },
   "scripts": {
-    "build": "tsc --module amd --outFile ./lib/index.js",
+    "build": "tsc --module es2015 --outDir ./lib",
     "dev": "webpack-dev-server --mode development"
   },
   "devDependencies": {
     "@types/react": "16.7.21",
     "@types/react-dom": "16.0.11",
+    "react-dom": "16.7.0",
     "ts-loader": "5.3.3",
     "typescript": "3.2.4",
     "webpack": "4.28.4",
@@ -23,7 +24,9 @@
     "webpack-dev-server": "3.1.14"
   },
   "dependencies": {
-    "react": "16.7.0",
-    "react-dom": "16.7.0"
+    "react": "16.7.0"
+  },
+  "peerDependencies": {
+    "react": "^16.3.0"
   }
 }

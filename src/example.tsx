@@ -1,7 +1,7 @@
 import { UserSelectProperty } from 'csstype';
 import * as React from 'react';
 import * as ReactDom from 'react-dom';
-import { createStore } from '.';
+import { createStore } from '../lib';
 
 const Store = createStore({
   message: `You haven't clicked anything yet!`,
