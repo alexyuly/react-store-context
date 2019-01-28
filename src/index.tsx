@@ -1,13 +1,13 @@
 import * as React from 'react';
 
-// NOTE - The setState type is copied from the React 16.7 types, because it's not exported.
-export type StoreProps<T> = {
+// NOTE - The setState declaration is copied from the React 16.7 types, because it can't be imported.
+export interface StoreProps<T> {
   state: T;
   setState<K extends keyof T>(
     state: ((prevState: Readonly<T>, props: Readonly<T>) => (Pick<T, K> | T | null)) | (Pick<T, K> | T | null),
     callback?: () => void
   ): void;
-};
+}
 
 export interface StoreProviderProps {
   children?: React.ReactNode;
@@ -22,8 +22,7 @@ export function createStore<T>(initialState = {} as T): Store<T> {
   const { Consumer, Provider } = React.createContext(null);
   return {
     Consumer,
-    Provider: class extends React.Component<StoreProviderProps, T> {
-      value: StoreProps<T>;
+    Provider: class extends React.Component<StoreProviderProps> {
       constructor(props) {
         super(props);
         this.state = initialState;
@@ -50,7 +49,7 @@ export interface ProviderProps {
 }
 
 export class Provider extends React.Component<ProviderProps> {
-  renderStores(stores: Store[]) {
+  private renderStores(stores: Store[]) {
     if (stores.length === 0) {
       return this.props.children;
     }
