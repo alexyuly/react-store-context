@@ -1,2 +1,2 @@
-# react-yas
-Yet Another Store for React
+# react-store-context
+A simple store API using React Context

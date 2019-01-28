@@ -1,13 +1,13 @@
 {
-  "name": "react-yas",
+  "name": "react-store-context",
   "version": "1.0.0",
-  "description": "Yet Another Store for React",
+  "description": "A simple store API using React Context",
   "author": "Alex Yuly",
   "license": "MIT",
   "main": "./lib/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/alexyuly/react-yas"
+    "url": "https://github.com/alexyuly/react-store-context"
   },
   "scripts": {
     "build": "tsc --module es2015 --outDir ./lib",
@@ -16,7 +16,9 @@
   "devDependencies": {
     "@types/react": "16.7.21",
     "@types/react-dom": "16.0.11",
+    "@types/recompose": "0.30.3",
     "react-dom": "16.7.0",
+    "recompose": "0.30.0",
     "ts-loader": "5.3.3",
     "typescript": "3.2.4",
     "webpack": "4.28.4",
