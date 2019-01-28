@@ -11,7 +11,8 @@
   },
   "scripts": {
     "build": "tsc --module es2015 --outDir ./lib",
-    "dev": "webpack-dev-server --mode development"
+    "dev": "webpack-dev-server --mode development",
+    "prepublishOnly": "npm run build"
   },
   "devDependencies": {
     "@types/react": "16.7.21",
