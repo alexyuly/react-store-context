@@ -85,7 +85,7 @@ const WrappedComponent = consumeStore(exampleStore)(Component);
 Alternatively, consume a store by creating a Consumer element:
 
 ```
-import * as React as 'react';
+import * as React from 'react';
 import { Component, exampleStore } from './the above examples';
 
 const ConsumingComponent = () => (
