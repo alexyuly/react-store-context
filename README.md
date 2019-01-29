@@ -41,7 +41,7 @@ Example usage:
 ```
 import * as React from 'react';
 import { Provider } from 'react-store-context';
-import exampleStore from './the above example';
+import { exampleStore } from './the above example';
 import Component from './the below example';
 
 const App = () => (
@@ -65,9 +65,9 @@ Example usage:
 ```
 import * as React from 'react';
 import { consumeStore } from 'react-store-context';
-import exampleStore from './the above example';
+import { exampleStore } from './the above example';
 
-const Component = ({ store }) => (
+export const Component = ({ store }) => (
   <button
     onClick={() => {
       store.setState({
@@ -79,5 +79,22 @@ const Component = ({ store }) => (
   </button>
 );
 
-export consumeStore(exampleStore)(Component);
+const WrappedComponent = consumeStore(exampleStore)(Component);
+```
+
+Alternatively, consume a store by creating a Consumer element:
+
+```
+import * as React as 'react';
+import { Component, exampleStore } from './the above examples';
+
+const ConsumingComponent = () => (
+  <exampleStore.Consumer>
+    {(store) => (
+      <Component
+        store={store}
+      />
+    )}
+  </exampleStore.Consumer>
+);
 ```
