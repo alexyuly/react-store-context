@@ -18,7 +18,7 @@ Make sure React 16, at [version 16.3.0](https://reactjs.org/blog/2018/03/29/reac
 
 Example usage:
 
-```
+```typescript
 import { createStore, Store } from 'react-store-context';
 
 interface State {
@@ -37,7 +37,7 @@ export const exampleStore: Store<State> = createStore({
 
 Example usage:
 
-```
+```typescript
 import * as React from 'react';
 import { Provider } from 'react-store-context';
 import { exampleStore } from './the above example';
@@ -65,7 +65,7 @@ Higher-order components are a convenient way to add functionality to regular com
 
 Example usage:
 
-```
+```typescript
 import * as React from 'react';
 import { consumeStore } from 'react-store-context';
 import { exampleStore } from './the above example';
@@ -89,7 +89,7 @@ const WrappedComponent = consumeStore(exampleStore)(Component);
 
 Alternatively, consume a store by creating a Consumer element:
 
-```
+```typescript
 import * as React from 'react';
 import { Component, exampleStore } from './the above examples';
 
