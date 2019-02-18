@@ -22,13 +22,14 @@ export function createStore<T>(initialState = {} as T): Store<T> {
       constructor(props) {
         super(props);
         this.state = initialState;
+        this.setState = this.setState.bind(this);
       }
       render() {
         return (
           <Provider
             value={{
               state: this.state,
-              setState: this.setState.bind(this),
+              setState: this.setState,
             }}
           >
             {this.props.children}
