@@ -1,12 +1,8 @@
 import * as React from 'react';
 
-// NOTE - The setState declaration is copied from the React 16.7 types, because it can't be imported.
 export interface StoreProps<T> {
   state: T;
-  setState<K extends keyof T>(
-    state: ((prevState: Readonly<T>, props: Readonly<T>) => (Pick<T, K> | T | null)) | (Pick<T, K> | T | null),
-    callback?: () => void
-  ): void;
+  setState: React.Component<unknown, T>['setState'];
 }
 
 export interface StoreProviderProps {
