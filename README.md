@@ -20,6 +20,7 @@ Make sure React 16, at [version 16.3.0](https://reactjs.org/blog/2018/03/29/reac
 
 ```tsx
 import * as React from 'react';
+import { render } from 'react-dom';
 import { createStore, Provider } from 'react-store-context';
 
 interface CheckboxProps {
@@ -59,40 +60,44 @@ const storeB = createStore({
   checked: false,
 });
 
-return (
-  <Provider stores={[storeA, storeB]}>
-    <storeA.Consumer>
-      {({ state, setState }) => {
-        return (
-          <Checkbox
-            checked={state.checked}
-            label='Store A'
-            setChecked={checked => {
-              setState({
-                checked,
-              });
-            }}
-          />
-        );
-      }}
-    </storeA.Consumer>
-    <storeB.Consumer>
-      {({ state, setState }) => {
-        return (
-          <Checkbox
-            checked={state.checked}
-            label='Store B'
-            setChecked={checked => {
-              setState({
-                checked,
-              });
-            }}
-          />
-        );
-      }}
-    </storeB.Consumer>
-  </Provider>
-);
+const App: React.FunctionComponent = () => {
+  return (
+    <Provider stores={[storeA, storeB]}>
+      <storeA.Consumer>
+        {({ state, setState }) => {
+          return (
+            <Checkbox
+              checked={state.checked}
+              label='Store A'
+              setChecked={checked => {
+                setState({
+                  checked,
+                });
+              }}
+            />
+          );
+        }}
+      </storeA.Consumer>
+      <storeB.Consumer>
+        {({ state, setState }) => {
+          return (
+            <Checkbox
+              checked={state.checked}
+              label='Store B'
+              setChecked={checked => {
+                setState({
+                  checked,
+                });
+              }}
+            />
+          );
+        }}
+      </storeB.Consumer>
+    </Provider>
+  );
+};
+
+render(<App />, document.getElementById('root'));
 
 ```
 
