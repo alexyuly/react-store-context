@@ -3,110 +3,104 @@ A simple store API using React Context
 
 ## Installation
 
-- Use Yarn: `yarn add react-store-context`
-- Or, use NPM: `npm i react-store-context`
+`yarn add react-store-context`
 
-## Why?
-
-- ✅ Zero dependencies, one peer dependency (React)
-- ✅ Single package
-- ✅ [86 lines of source code](https://github.com/alexyuly/react-store-context/blob/master/src/index.tsx)
-- ✅ TypeScript support included
-
-### Peer dependencies
+### Peer Dependencies
 
 Make sure React 16, at [version 16.3.0](https://reactjs.org/blog/2018/03/29/react-v-16-3.html) or higher, is installed alongside react-store-context.
 
-## API documentation
+## Rationale
 
-### `createStore`
+- ✅ The simplest global state management solution for React ^16.3.0
+- ✅ One package with zero dependencies
+- ✅ [59 lines of source code](https://github.com/alexyuly/react-store-context/blob/master/src/index.tsx)
+- ✅ TypeScript support included
 
-`function createStore<T>(initialState = {} as T): Store<T>` [(View Source...)](https://github.com/alexyuly/react-store-context/blob/master/src/index.tsx#L21)
+## Example Usage
 
-Example usage:
+```tsx
+import * as React from 'react';
+import { createStore, Provider } from 'react-store-context';
 
-```typescript
-import { createStore, Store } from 'react-store-context';
-
-interface State {
-  count: number;
+interface CheckboxProps {
+  checked: boolean;
+  label: string;
+  setChecked(checked: boolean): void;
 }
 
-// Create a store of type `State`.
-export const exampleStore: Store<State> = createStore({
-  count: 0,
+const Checkbox: React.FunctionComponent<CheckboxProps> = props => {
+  return (
+    <label
+      style={{
+        display: 'block',
+        userSelect: 'none'
+      }}
+    >
+      <input
+        type='checkbox'
+        checked={props.checked}
+        onChange={() => {
+          props.setChecked(!props.checked);
+        }}
+        style={{
+          marginRight: 8,
+        }}
+      />
+      {props.label}
+    </label>
+  );
+};
+
+const storeA = createStore({
+  checked: false,
 });
-```
 
-### `Provider`
+const storeB = createStore({
+  checked: false,
+});
 
-`class Provider extends React.Component<ProviderProps>` [(View Source...)](https://github.com/alexyuly/react-store-context/blob/master/src/index.tsx#L51)
-
-Example usage:
-
-```typescript
-import * as React from 'react';
-import { Provider } from 'react-store-context';
-import { exampleStore } from './the above example';
-import { Component } from './the below example';
-
-const App = () => (
-  <Provider
-    stores={[
-      exampleStore,
-      // All stores passed to a Provider can be used by its children, with consumeStore.
-    ]}
-  >
-    <Component />
+return (
+  <Provider stores={[storeA, storeB]}>
+    <storeA.Consumer>
+      {({ state, setState }) => {
+        return (
+          <Checkbox
+            checked={state.checked}
+            label='Store A'
+            setChecked={checked => {
+              setState({
+                checked,
+              });
+            }}
+          />
+        );
+      }}
+    </storeA.Consumer>
+    <storeB.Consumer>
+      {({ state, setState }) => {
+        return (
+          <Checkbox
+            checked={state.checked}
+            label='Store B'
+            setChecked={checked => {
+              setState({
+                checked,
+              });
+            }}
+          />
+        );
+      }}
+    </storeB.Consumer>
   </Provider>
 );
+
 ```
 
-### `consumeStore`
+## Development with Storybook
 
-`function consumeStore<T, P>(store: Store<T>): (Cmp: React.ComponentType<P>) => React.ComponentType<P & ConsumerProps<T>>` [(View Source...)](https://github.com/alexyuly/react-store-context/blob/master/src/index.tsx#L73)
+`yarn storybook`
 
-`consumeStore` is a HOC (["Higher-Order Component"](https://reactjs.org/docs/higher-order-components.html)), meaning that it's a function of a component which returns another component.
+## TODO
 
-Higher-order components are a convenient way to add functionality to regular components through semantic couplings with functions, while still maintaining the encapsulation and reusability of those regular components.
-
-Example usage:
-
-```typescript
-import * as React from 'react';
-import { consumeStore } from 'react-store-context';
-import { exampleStore } from './the above example';
-
-// Define a component with a "store" prop.
-export const Component = ({ store }) => (
-  <button
-    onClick={() => {
-      store.setState({
-        count: store.state.count + 1,
-      });
-    }}
-  >
-    You've clicked me {store.state.count} time{store.state.count === 1 ? '' : 's'}.
-  </button>
-);
-
-// "Bind" your component to your store, with consumeStore.
-const WrappedComponent = consumeStore(exampleStore)(Component);
-```
-
-Alternatively, consume a store by creating a Consumer element:
-
-```typescript
-import * as React from 'react';
-import { Component, exampleStore } from './the above examples';
-
-const ConsumingComponent = () => (
-  <exampleStore.Consumer>
-    {(store) => (
-      <Component
-        store={store}
-      />
-    )}
-  </exampleStore.Consumer>
-);
-```
+- Add API documentation.
+- Add a React Hooks API.

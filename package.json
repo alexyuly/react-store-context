@@ -1,33 +1,33 @@
 {
   "name": "react-store-context",
-  "version": "1.0.3",
+  "version": "2.0.0",
   "description": "A simple store API using React Context",
   "author": "Alex Yuly",
   "license": "MIT",
-  "main": "./lib/index.js",
+  "main": "./dist/index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/alexyuly/react-store-context"
   },
   "scripts": {
-    "build": "tsc --module es2015 --outDir ./lib",
-    "dev": "webpack-dev-server --mode development",
-    "prepublishOnly": "npm run build"
-  },
-  "devDependencies": {
-    "@types/react": "16.7.21",
-    "@types/react-dom": "16.0.11",
-    "@types/recompose": "0.30.3",
-    "react": "16.7.0",
-    "react-dom": "16.7.0",
-    "recompose": "0.30.0",
-    "ts-loader": "5.3.3",
-    "typescript": "3.2.4",
-    "webpack": "4.28.4",
-    "webpack-cli": "3.2.1",
-    "webpack-dev-server": "3.1.14"
+    "build": "tsc",
+    "prepublishOnly": "npm run build",
+    "storybook": "start-storybook",
+    "watch": "tsc -w"
   },
   "peerDependencies": {
     "react": "^16.3.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@storybook/react": "^5.1.11",
+    "@types/react": "^16.9.2",
+    "@types/storybook__react": "^4.0.2",
+    "awesome-typescript-loader": "^5.2.1",
+    "babel-loader": "^8.0.6",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "typescript": "^3.5.3",
+    "webpack": "^4.39.2"
   }
 }

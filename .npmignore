@@ -1,7 +1,9 @@
+.storybook
 dev
 node_modules
 src
+stories
 tsconfig.json
-webpack.config.json
+webpack.config.js
 yarn.lock
 *.log
